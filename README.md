@@ -27,4 +27,4 @@ Views currently included:
 Android devices running OS version 16+.
 
 ##Licensing
-The code in this project is licensed under the MIT License.
+The code in this project is licensed under the Apache License v2.0.

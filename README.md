@@ -1,8 +1,15 @@
 # Android--Custom-Views
 Repository for custom views for Android.
 
+##Platform
+Android Studio.
+
 ##Description
-This application contains a package with custom Android views (androidcustomviews) and a demo app (App). It will be reworked into a library.
+This application contains a module with custom Android views (androidcustomviews) and a demo app (App).
+As this is the initial commit, there are several things that still need to be done:
+- Views module reworked into a library.
+- More custom views will be added.
+- The demo will be released in Play Store.
 
 Views currently included:
 - Typewriter

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="typewriter_mode_array">
+        <item>Touch Disabled</item>
+        <item>Touch to Speed Up</item>
+        <item>Touch to Show</item>
+    </string-array>
+
+    <string-array name="typewriter_speed_array">
+        <item>Delay: 50ms</item>
+        <item>Delay: 150ms</item>
+        <item>Delay: 300ms</item>
+        <item>Delay: 500ms</item>
+        <item>Delay: 1000ms</item>
+    </string-array>
+</resources>

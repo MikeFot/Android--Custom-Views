@@ -1,0 +1,58 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.michaelfotiadis.androidcustomviewsdemos.fragments.MyAnalogClockFragment">
+
+    <com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView
+        android:id="@+id/picker_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/layout_clock_control"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_marginRight="@dimen/activity_horizontal_margin">
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/button_small_width"
+            android:layout_height="@dimen/button_height"
+            android:padding="@dimen/button_padding"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:text="@string/button_clock_start"
+            android:id="@+id/button_clock_start" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/button_small_width"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_marginRight="@dimen/activity_horizontal_margin"
+            android:padding="@dimen/button_padding"
+            android:text="@string/button_clock_pause"
+            android:id="@+id/button_clock_pause" />
+
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="@dimen/button_small_width"
+            android:layout_height="@dimen/button_height"
+            android:padding="@dimen/button_padding"
+            android:text="@string/button_clock_reset"
+            android:id="@+id/button_clock_reset" />
+    </LinearLayout>
+
+    <com.michaelfotiadis.androidcustomviews.clock.MyFusionClock
+        android:id="@+id/fusion_clock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="visible"/>
+
+</LinearLayout>

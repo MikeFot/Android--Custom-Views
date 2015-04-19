@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.michaelfotiadis.androidcustomviewsdemos.fragments.MyColourPickerFragment">
+
+    <com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView
+        android:id="@+id/picker_layout"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:id="@+id/colour_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_below="@+id/picker_layout"
+        android:layout_above="@+id/linearLayout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout">
+        <Button
+            android:layout_width="@dimen/button_large_width"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/text_button_add_colour"
+            android:id="@+id/button_add_colour"
+            android:layout_gravity="center_horizontal" />
+
+        <Button
+            android:layout_width="@dimen/button_large_width"
+            android:layout_height="@dimen/button_height"
+            android:text="@string/text_button_remove_colour"
+            android:id="@+id/button_remove_colour"
+            android:layout_gravity="center_horizontal" />
+
+
+        </LinearLayout>
+
+
+
+</RelativeLayout>

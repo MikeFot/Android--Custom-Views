@@ -13,4 +13,10 @@
         <item>Delay: 500ms</item>
         <item>Delay: 1000ms</item>
     </string-array>
+    <string-array name="chunk_numbers">
+        <item>4 pieces</item>
+        <item>9 pieces</item>
+        <item>16 pieces</item>
+        <item>64 pieces</item>
+    </string-array>
 </resources>

@@ -76,7 +76,7 @@ public class MyTypewriterFragment extends Fragment {
         // Initialise the spinner
         mModeSpinner = (Spinner) view.findViewById(R.id.mode_spinner);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.typewriter_mode_array, R.layout.typewriter_spinner);
+                R.array.typewriter_mode_array, R.layout.demo_spinner);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner
@@ -98,7 +98,7 @@ public class MyTypewriterFragment extends Fragment {
         // Initialise the spinner
         mDelaySpinner = (Spinner) view.findViewById(R.id.speed_spinner);
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
-                R.array.typewriter_speed_array, R.layout.typewriter_spinner);
+                R.array.typewriter_speed_array, R.layout.demo_spinner);
         // Specify the layout to use when the list of choices appears
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         // Apply the adapter to the spinner

@@ -22,5 +22,7 @@
     <string name="button_clock_reset">Reset</string>
     <string name="button_clock_pause">Pause</string>
     <string name="button_clock_start">Start</string>
+    <string name="title_section5">Tiled Image</string>
+    <string name="title_section6">Tiled Grid</string>
 
 </resources>

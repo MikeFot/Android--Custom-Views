@@ -13,10 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.support.v4.widget.DrawerLayout;
 
+import com.michaelfotiadis.androidcustomviews.imageview.MyTiledImageView;
 import com.michaelfotiadis.androidcustomviewsdemos.R;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyAnalogClockFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyColourPickerFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyFusionClockFragment;
+import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTiledGridFragment;
+import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTiledImageFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTypewriterFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.utils.Logger;
 
@@ -39,6 +42,8 @@ public class MainActivity extends ActionBarActivity
     private MyAnalogClockFragment mAnalogClockFragment;
     private MyColourPickerFragment mColourPickerFragment;
     private MyFusionClockFragment mFusionClockFragment;
+    private MyTiledImageFragment mTiledImageFragment;
+    private MyTiledGridFragment mTiledGridFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +98,22 @@ public class MainActivity extends ActionBarActivity
                         .replace(R.id.container, mFusionClockFragment)
                         .commit();
                 break;
+            case 4:
+                // add the tiled image fragment
+                if (mTiledImageFragment == null)
+                    mTiledImageFragment = MyTiledImageFragment.newInstance(position + 1);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, mTiledImageFragment)
+                        .commit();
+                break;
+            case 5:
+                // add the tiled image fragment
+                if (mTiledGridFragment == null)
+                    mTiledGridFragment = MyTiledGridFragment.newInstance(position + 1);
+                fragmentManager.beginTransaction()
+                        .replace(R.id.container, mTiledGridFragment)
+                        .commit();
+                break;
             default:
                 fragmentManager.beginTransaction()
                         .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
@@ -115,6 +136,12 @@ public class MainActivity extends ActionBarActivity
                 break;
             case 4:
                 mTitle = getString(R.string.title_section4);
+                break;
+            case 5:
+                mTitle = getString(com.michaelfotiadis.androidcustomviewsdemos.R.string.title_section5);
+                break;
+            case 6:
+                mTitle = getString(R.string.title_section6);
                 break;
         }
     }

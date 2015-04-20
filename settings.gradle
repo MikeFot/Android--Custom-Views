@@ -1,1 +1,1 @@
-include ':app', ':androidcustomviews'
+include ':app', ':androidcustomviews', ':colourpicker', ':androidclocks'

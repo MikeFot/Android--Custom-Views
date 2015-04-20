@@ -31,8 +31,13 @@ public class MyTiledGridView extends GridView {
         mContext = context;
     }
 
-    public void init(final Drawable drawable, final int chunkNumbers) {
-        Bitmap[] bitmaps = createImageArrays(drawable, chunkNumbers);
+    /**
+     * Populates the gridview with a drawable
+     * @param drawable Drawable to be inserted into the gridview
+     * @param chunkNumbers integer number of chunks to be split into
+     */
+    public void setDrawable(final Drawable drawable, final int chunkNumbers, final boolean showBorders) {
+        final Bitmap[] bitmaps = createImageArrays(drawable, chunkNumbers);
 
         final Bitmap firstBitmap = bitmaps[0];
 
@@ -41,25 +46,44 @@ public class MyTiledGridView extends GridView {
 
         final int columns = (int) Math.sqrt(chunkNumbers);
 
+        ViewGroup.LayoutParams params = getLayoutParams();
+        params.width = mRowWidth * columns;
+        params.height = mRowHeight * columns;
+
         this.setNumColumns(columns);
         this.setColumnWidth(mRowWidth);
+
         this.setStretchMode(NO_STRETCH);
+
+        toggleSpacing(showBorders);
 
         this.setAdapter(new CustomGridAdapter(bitmaps));
     }
 
+    public void toggleSpacing(final boolean showBorders) {
+        int spacing = 0;
+        if (showBorders)
+            spacing = 1;
+
+        this.setVerticalSpacing(spacing);
+        this.setHorizontalSpacing(spacing);
+    }
+
+    /**
+     * Split a drawable into chunks and return the chunk array
+     * @param drawable Drawable to be split
+     * @param chunkNumbers Number of chunks
+     * @return Bitmap array
+     */
     public Bitmap[] createImageArrays(final Drawable drawable, int chunkNumbers) {
         // make sure chunk numbers are at least 1
         if (chunkNumbers < 1)
             chunkNumbers = 1;
 
-        Bitmap[] items = new Bitmap[chunkNumbers];
+        final Bitmap[] bitmapArray = new Bitmap[chunkNumbers];
 
         //Getting the scaled bitmap of the source image
         final Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
-
-        // initialise an empty bitmap with the size of the original one
-        final Bitmap cBitmap = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), Bitmap.Config.ARGB_8888);
 
         final Bitmap scaledBitmap = Bitmap.createScaledBitmap(bitmap, bitmap.getWidth(), bitmap.getHeight(), true);
 
@@ -80,36 +104,35 @@ public class MyTiledGridView extends GridView {
         for (int r = 0; r < rows; r++) {
             int xCoord = 0;
             for (int c = 0; c < cols; c++) {
-                // create the chunked bitmap
+                // create the tiled bitmap
                 drawableBitmap = Bitmap.createBitmap(scaledBitmap, xCoord, yCoord, chunkWidth, chunkHeight);
 
-                items[i] = drawableBitmap;
+                bitmapArray[i] = drawableBitmap;
                 i++;
                 xCoord += chunkWidth;
             }
             yCoord += chunkHeight;
         }
-        return items;
+        return bitmapArray;
     }
 
     public class CustomGridAdapter extends BaseAdapter {
         // Keep all Images in array
-        public Bitmap[] mThumbIds;
-
+        public Bitmap[] mBitmapItem;
 
         // Constructor
-        public CustomGridAdapter(Bitmap[] items) {
-            this.mThumbIds = items;
+        public CustomGridAdapter(final Bitmap[] bitmapArray) {
+            this.mBitmapItem = bitmapArray;
         }
 
         @Override
         public int getCount() {
-            return mThumbIds.length;
+            return mBitmapItem.length;
         }
 
         @Override
         public Object getItem(int position) {
-            return mThumbIds[position];
+            return mBitmapItem[position];
         }
 
         @Override
@@ -118,9 +141,9 @@ public class MyTiledGridView extends GridView {
         }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
+        public View getView(final int position, final View convertView, final ViewGroup parent) {
             ImageView imageView = new ImageView(mContext);
-            imageView.setImageBitmap(mThumbIds[position]);
+            imageView.setImageBitmap(mBitmapItem[position]);
             imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
             imageView.setLayoutParams(new GridView.LayoutParams(mRowWidth, mRowHeight));
             return imageView;

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="com.michaelfotiadis.androidcustomviewsdemos.fragments.MyColourPickerFragment">
 
-    <com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView
+    <com.michaelfotiadis.colourpicker.MyColourPickerView
         android:id="@+id/picker_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"

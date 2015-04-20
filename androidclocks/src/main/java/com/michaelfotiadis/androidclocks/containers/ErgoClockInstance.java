@@ -1,10 +1,10 @@
-package com.michaelfotiadis.androidcustomviews.containers;
-
-import java.text.DecimalFormat;
-import java.util.Arrays;
+package com.michaelfotiadis.androidclocks.containers;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+
+import java.text.DecimalFormat;
+import java.util.Arrays;
 
 public class ErgoClockInstance implements Parcelable {
 

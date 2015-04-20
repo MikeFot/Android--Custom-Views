@@ -57,15 +57,14 @@ public class MyTiledImageFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.fragment_tiled_image, container, false);
         mTiledImageView = (MyTiledImageView) view.findViewById(R.id.tiled_image);
         mSpinnerChunks = (Spinner) view.findViewById(R.id.spinner_chunks);
 
         final ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.chunk_numbers, R.layout.demo_spinner);
-        // Specify the layout to use when the list of choices appears
-        // Apply the adapter to the spinner
+        // apply the adapter to the spinner
         mSpinnerChunks.setAdapter(adapter);
         mSpinnerChunks.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

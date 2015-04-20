@@ -1,4 +1,4 @@
-package com.michaelfotiadis.androidcustomviews.clock;
+package com.michaelfotiadis.androidclocks;
 
 
 

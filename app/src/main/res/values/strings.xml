@@ -1,7 +1,8 @@
-<resources>
-    <string name="app_name">Android-Custom-Views</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Android Custom Views</string>
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
+    <string name="about">About</string>
     <string name="title_activity_main">Custom Views Demo</string>
 
     <string name="title_section1">TypeWriter</string>
@@ -24,5 +25,11 @@
     <string name="button_clock_start">Start</string>
     <string name="title_section5">Tiled Image</string>
     <string name="title_section6">Tiled Grid</string>
+    <string name="ok">OK</string>
+    <!-- App Fields -->
+    <string name="version">1.0</string>
+    <string name="by_author">by Michael Fotiadis</string>
+    <string name="copyright">&#169; Michael Fotiadis</string>
+    <string name="repo_url" tools:ignore="TypographyDashes">https://github.com/MikeFot/Android--Custom-Views</string>
 
 </resources>

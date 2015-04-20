@@ -88,6 +88,8 @@
     <orderEntry type="library" exported="" name="appcompat-v7-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-v4-22.0.0" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-22.0.0" level="project" />
+    <orderEntry type="module" module-name="androidclocks" exported="" />
+    <orderEntry type="module" module-name="colourpicker" exported="" />
     <orderEntry type="module" module-name="androidcustomviews" exported="" />
   </component>
 </module>

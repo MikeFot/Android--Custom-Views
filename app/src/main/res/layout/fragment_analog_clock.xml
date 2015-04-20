@@ -4,7 +4,7 @@
     android:orientation="vertical"
     tools:context="com.michaelfotiadis.androidcustomviewsdemos.fragments.MyAnalogClockFragment">
 
-    <com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView
+    <com.michaelfotiadis.colourpicker.MyColourPickerView
         android:id="@+id/picker_layout"
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -48,7 +48,7 @@
             android:id="@+id/button_clock_reset" />
     </LinearLayout>
 
-    <com.michaelfotiadis.androidcustomviews.clock.MyAnalogClock
+    <com.michaelfotiadis.androidclocks.MyAnalogClock
         android:id="@+id/analog_clock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

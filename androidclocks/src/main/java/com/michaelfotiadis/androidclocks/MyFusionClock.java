@@ -1,61 +1,62 @@
-package com.michaelfotiadis.androidcustomviews.clock;
+package com.michaelfotiadis.androidclocks;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.RemoteViews.RemoteView;
 
-import com.michaelfotiadis.androidcustomviews.R;
-import com.michaelfotiadis.androidcustomviews.containers.ErgoClockInstance;
-import com.michaelfotiadis.androidcustomviews.utils.ColorUtils;
-import com.michaelfotiadis.androidcustomviews.utils.Logger;
-import com.michaelfotiadis.androidcustomviews.utils.PrimitiveConversions;
+import com.michaelfotiadis.androidclocks.containers.ErgoClockInstance;
+import com.michaelfotiadis.androidclocks.utils.ColorUtils;
+import com.michaelfotiadis.androidclocks.utils.PrimitiveConversions;
 
 import java.util.Calendar;
+
 
 /**
  * This widget display an analogue clock with two hands for hours and
  * minutes.
  */
 @RemoteView
-public class MyAnalogClock extends View implements MyClockInterface {
+public class MyFusionClock extends View implements MyClockInterface {
 
-	private final long HANDLER_UPDATE_INTERVAL = 1000;
+	private final long HANDLER_UPDATE_INTERVAL = 10;
 
-	// drawable fields
 	private Drawable mHourHand;
 	private Drawable mMinuteHand;
 	private Drawable mSecondHand;
 	private Drawable mDial;
 	private Drawable mAlarmHandMinutes;
 	private Drawable mAlarmHandHours;
-
-
+	
 	private int mDialWidth;
 	private int mDialHeight;
 
 	private boolean mChanged;
+	
+	private boolean isClockRunning;
 
-    // overlay color for color filter
-    private int mOverlayColor = Integer.MIN_VALUE;
-    private int mLighterOverlayColor = Integer.MIN_VALUE;
-    private int mShiftedOverlayColor = Integer.MIN_VALUE;
+	// overlay color for color filter
+	private int mOverlayColor = Integer.MIN_VALUE;
+	private int mLighterOverlayColor = Integer.MIN_VALUE;
+	private int mShiftedOverlayColor = Integer.MIN_VALUE;
+
+	private int mInterval;
 	
 	private final Handler mHandler = new Handler();
 
-	private final String TAG = "My Analog Clock";
+	private final String TAG = "My Fusion Clock";
 
 	private final Runnable mRunnable = new Runnable() {
 		@Override
 		public void run() {
 			mHandler.postDelayed(this, HANDLER_UPDATE_INTERVAL);
+
 			updateTime();
 		}
 	};
@@ -66,48 +67,42 @@ public class MyAnalogClock extends View implements MyClockInterface {
 
 	private long mStartTime= 0;
 
-	private int mInterval;
-
-	public MyAnalogClock(Context context) {
+	public MyFusionClock(Context context) {
 		super(context);
 	}
 
-	public MyAnalogClock(Context context, AttributeSet attrs) {
+	public MyFusionClock(Context context, AttributeSet attrs) {
 		this(context, attrs, 0);
 	}
 
-	private MyAnalogClock(Context context, AttributeSet attrs,
+	private MyFusionClock(Context context, AttributeSet attrs,
                           int defStyle) {
 		super(context, attrs, defStyle);
 		Resources resources = context.getResources();
-		TypedArray typedArray =	context.obtainStyledAttributes(attrs, R.styleable.AnalogClock, defStyle, 0);
-		mDial = resources.getDrawable(R.drawable.clock_dial);
-		mHourHand = resources.getDrawable(R.drawable.clock_hand_hour);
-		mMinuteHand = resources.getDrawable(R.drawable.clock_hand_minute);
-		mSecondHand = resources.getDrawable(R.drawable.clock_hand_second);
-
-		// set the 2 alarm hands
-		mAlarmHandHours = resources.getDrawable(R.drawable.clock_hand_alarm_hours);
-		mAlarmHandMinutes = resources.getDrawable(R.drawable.clock_hand_alarm_minutes);
+		mDial = resources.getDrawable(R.drawable.clock_fusion_dial_r_three);
+		mHourHand = resources.getDrawable(R.drawable.clock_fusion_hour_hand);
+		mMinuteHand = resources.getDrawable(R.drawable.clock_fusion_hand_minutes);
+		mSecondHand = resources.getDrawable(R.drawable.clock_fusion_second);
+		mAlarmHandMinutes = resources.getDrawable(R.drawable.clock_fusion_minute_back);
+		mAlarmHandHours = resources.getDrawable(R.drawable.clock_fusion_hour_back);
 		
 		mDialWidth = mDial.getIntrinsicWidth();
 		mDialHeight = mDial.getIntrinsicHeight();
-		typedArray.recycle();
 
-        setOverlayColor("#ff0099cc");
+        if (mOverlayColor == Integer.MIN_VALUE)
+            setOverlayColor("#ff0099cc");
+
+		mLighterOverlayColor = new ColorUtils().getLighterColor(mOverlayColor);
+		mShiftedOverlayColor = new ColorUtils().getRightBitShiftedColor(mOverlayColor);
+		
 	}
 
     public void setOverlayColor(final String hexColour) {
         try {
             this.mOverlayColor = Color.parseColor(hexColour);
-            mShiftedOverlayColor = new ColorUtils().getRightBitShiftedColor(mOverlayColor);
-            mLighterOverlayColor = new ColorUtils().getLighterColor(mOverlayColor);
-            this.invalidate();
         } catch (Exception e) {
             this.mOverlayColor = Color.parseColor("#ff0099cc");
-            mShiftedOverlayColor = new ColorUtils().getRightBitShiftedColor(mOverlayColor);
-            mLighterOverlayColor = new ColorUtils().getLighterColor(mOverlayColor);
-            Logger.e(TAG, e.getLocalizedMessage());
+            Log.e(TAG, e.getLocalizedMessage());
         }
     }
 
@@ -127,7 +122,7 @@ public class MyAnalogClock extends View implements MyClockInterface {
 	@Override
 	protected void onAttachedToWindow() {
 		super.onAttachedToWindow();
-		Logger.d(TAG, "Analogue Clock Attached to Window");
+		Log.d(TAG, "Analogue Clock Attached to Window");
 		mChanged = true;
 	}
 
@@ -136,7 +131,7 @@ public class MyAnalogClock extends View implements MyClockInterface {
 		super.onDetachedFromWindow();
 		stopClock();
 	}
-	
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
@@ -158,6 +153,7 @@ public class MyAnalogClock extends View implements MyClockInterface {
 		int height = dial.getIntrinsicHeight();
 		boolean scaled = false;
 
+		
 		if (availableWidth < width || availableHeight < height) {
 			scaled = true;
 			float scale = Math.min((float) availableWidth / (float) width,
@@ -168,48 +164,46 @@ public class MyAnalogClock extends View implements MyClockInterface {
 		if (changed) {
 			dial.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
 		}
-		// dial.setColorFilter(mOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
-		dial.draw(canvas);
 		canvas.save();
 		
-		// draw the minutes hand
-		canvas.save();
-		canvas.rotate(mClockInstance.getMinutes() / 60.0f * 360.0f, actualX, actualY);
-		width = mMinuteHand.getIntrinsicWidth();
-		height = mMinuteHand.getIntrinsicHeight();
-		mMinuteHand.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
-		mMinuteHand.draw(canvas);
-		canvas.restore();
-		
-		// draw the hours hand
-		canvas.save();
-		canvas.rotate(mClockInstance.getHour() / 12.0f * 360.0f, actualX, actualY);
-		width = mHourHand.getIntrinsicWidth();
-		height = mHourHand.getIntrinsicHeight();
-		mHourHand.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
-		mHourHand.draw(canvas);
-		canvas.restore();
-
 		// draw the hours alarm indication
 		canvas.save();
-		canvas.rotate((mInterval / 60) / 12.0f * 360.0f, actualX, actualY);
+		canvas.rotate((int)((mInterval / 60) / 12.0f * 360.0f), actualX, actualY);
 		width = mAlarmHandHours.getIntrinsicWidth();
 		height = mAlarmHandHours.getIntrinsicHeight();
-		mAlarmHandHours.setColorFilter(mLighterOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
-		mAlarmHandHours.setAlpha(200);
+		mAlarmHandHours.setColorFilter(mOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
 		mAlarmHandHours.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
 		mAlarmHandHours.draw(canvas);
 		canvas.restore();
 		
-		// draw the minutes alarm indication
+		// draw the clock hour hand on top of the hours indication
+		canvas.rotate(mClockInstance.getHour() / 12.0f * 360.0f, actualX, actualY);
+		width = mHourHand.getIntrinsicWidth();
+		height = mHourHand.getIntrinsicHeight();
+		mHourHand.setColorFilter(mShiftedOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+		mHourHand.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
+		mHourHand.draw(canvas);
+		canvas.restore();
+		
+		// draw the minutes alarm indication which includes the backface of the minutes drawable
 		canvas.save();
+		// rotate effectively once
 		canvas.rotate(mInterval / 60.0f * 360.0f, actualX, actualY);
 		width = mAlarmHandMinutes.getIntrinsicWidth();
 		height = mAlarmHandMinutes.getIntrinsicHeight();
-		mAlarmHandMinutes.setColorFilter(mLighterOverlayColor, PorterDuff.Mode.MULTIPLY);
-		mAlarmHandMinutes.setAlpha(200);
+		mAlarmHandMinutes.setColorFilter(mShiftedOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
 		mAlarmHandMinutes.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
 		mAlarmHandMinutes.draw(canvas);
+		canvas.restore();
+		
+		// draw minutes
+		canvas.save();
+		canvas.rotate(mClockInstance.getMinutes() / 60.0f * 360.0f, actualX, actualY);
+		width = mMinuteHand.getIntrinsicWidth();
+		height = mMinuteHand.getIntrinsicHeight();
+		mMinuteHand.setColorFilter(mLighterOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+		mMinuteHand.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
+		mMinuteHand.draw(canvas);
 		canvas.restore();
 		
 		// draw seconds
@@ -218,14 +212,28 @@ public class MyAnalogClock extends View implements MyClockInterface {
 		width = mSecondHand.getIntrinsicWidth();
 		height = mSecondHand.getIntrinsicHeight();
 		mSecondHand.setBounds(actualX - (width / 2), actualY - (height / 2), actualX + (width / 2), actualY + (height / 2));
-		mSecondHand.setColorFilter(mShiftedOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+		// set a color filter
+		mSecondHand.setColorFilter(mOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
 		mSecondHand.draw(canvas);
 		canvas.restore();
+
+		// handle the rotating graphic - use a boolean to enable draw
+		if (isClockRunning) {
+			canvas.rotate(rotation, actualX, actualY);
+			dial.setColorFilter(mLighterOverlayColor, android.graphics.PorterDuff.Mode.MULTIPLY);
+//			dial.setAlpha(20);
+			dial.draw(canvas);
+		}
 		
 		if (scaled) {
 			canvas.restore();
 		}
+		rotation = (rotation + 2f) % 360;
+		this.postInvalidate();
+
 	}
+
+	private float rotation = 0;
 
 	@Override
 	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -258,11 +266,6 @@ public class MyAnalogClock extends View implements MyClockInterface {
 	}
 
 	@Override
-	public void setMinutesToAlarm(int minutesToAlarm) {
-		mInterval = minutesToAlarm;
-	}
-
-	@Override
 	public void setTime(final int hours, final int minutes, final int seconds)
 	{
 		//		Logger.d(TAG, "Setting time to " + hours + " " + minutes + " " + seconds);
@@ -271,8 +274,8 @@ public class MyAnalogClock extends View implements MyClockInterface {
 		mClockInstance.setHour(hours + minutes / 60.0f);
 		invalidate();
 	}
-	
-	private void setTimeRunning(final long timeRunning) {
+
+	private void setTimeRunning(long timeRunning) {
 		this.mTimeRunning = timeRunning;
 	}
 
@@ -282,21 +285,18 @@ public class MyAnalogClock extends View implements MyClockInterface {
             resumeClock();
             return;
         }
-
 		mStartTime = startTime;
 		mInterval = minutesToAlarm;
+		isClockRunning = true;
 		mHandler.post(mRunnable);
 	}
 
-    public void resumeClock() {
-        startClock(Calendar.getInstance().getTimeInMillis() - getTimeRunning()*1000, 0);
-    }
-
 	@Override
 	public void stopClock() {
+		isClockRunning = false;
+		mClockInstance.reset();
         setTimeRunning(0);
         mStartTime = 0;
-		mClockInstance.reset();
 		invalidate();
 		mHandler.removeCallbacks(mRunnable);
 	}
@@ -308,17 +308,13 @@ public class MyAnalogClock extends View implements MyClockInterface {
 	public void updateTime() {
 		setTimeRunning((Calendar.getInstance().getTimeInMillis() - 
 				mStartTime) / 1000);
-
 		if (mStartTime == 0) {
 			mClockInstance.reset();
 			invalidate();
 			return;
 		}
+		float[] timeIntArray = PrimitiveConversions.getHourFloatTimeArrayFromSeconds(getTimeRunning());
 
-		// convert time into an array
-		final float[] timeIntArray = PrimitiveConversions.getHourMinuteFloatTimeArrayFromSeconds(getTimeRunning());
-
-		// set time for the clock instance
 		mClockInstance.setTime(timeIntArray[0], timeIntArray[1], timeIntArray[2]);
 
 		mChanged = true;
@@ -326,7 +322,17 @@ public class MyAnalogClock extends View implements MyClockInterface {
 	}
 
 	@Override
+	public void setMinutesToAlarm(int minutesToAlarm) {
+		mInterval = minutesToAlarm;
+	}
+
+    public void resumeClock() {
+        // create a false start point using time running
+        startClock(Calendar.getInstance().getTimeInMillis() - getTimeRunning()*1000, 0);
+    }
+
+	@Override
 	public void setSystemTime() {
-        // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 	}
 }

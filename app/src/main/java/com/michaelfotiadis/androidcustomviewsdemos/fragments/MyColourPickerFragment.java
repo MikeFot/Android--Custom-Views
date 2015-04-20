@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
-import com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView;
 import com.michaelfotiadis.androidcustomviewsdemos.R;
 import com.michaelfotiadis.androidcustomviewsdemos.activity.MainActivity;
-import com.michaelfotiadis.androidcustomviewsdemos.utils.Logger;
+import com.michaelfotiadis.colourpicker.MyColourPickerView;
 
 import java.util.ArrayList;
 import java.util.List;

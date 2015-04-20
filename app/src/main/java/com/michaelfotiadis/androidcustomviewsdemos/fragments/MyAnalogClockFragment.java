@@ -1,6 +1,5 @@
 package com.michaelfotiadis.androidcustomviewsdemos.fragments;
 
-
 import android.app.Activity;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -12,10 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.michaelfotiadis.androidcustomviews.clock.MyAnalogClock;
-import com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView;
+import com.michaelfotiadis.androidclocks.MyAnalogClock;
 import com.michaelfotiadis.androidcustomviewsdemos.R;
 import com.michaelfotiadis.androidcustomviewsdemos.activity.MainActivity;
+import com.michaelfotiadis.colourpicker.MyColourPickerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.michaelfotiadis.androidcustomviews.clock.MyFusionClock;
-import com.michaelfotiadis.androidcustomviews.layouts.MyColourPickerView;
+import com.michaelfotiadis.androidclocks.MyFusionClock;
 import com.michaelfotiadis.androidcustomviewsdemos.R;
 import com.michaelfotiadis.androidcustomviewsdemos.activity.MainActivity;
+import com.michaelfotiadis.colourpicker.MyColourPickerView;
 
 import java.util.ArrayList;
 import java.util.Calendar;

@@ -3,8 +3,10 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Android-Custom-Views.iml" filepath="$PROJECT_DIR$/Android-Custom-Views.iml" />
+      <module fileurl="file://$PROJECT_DIR$/androidclocks/androidclocks.iml" filepath="$PROJECT_DIR$/androidclocks/androidclocks.iml" />
       <module fileurl="file://$PROJECT_DIR$/androidcustomviews/androidcustomviews.iml" filepath="$PROJECT_DIR$/androidcustomviews/androidcustomviews.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/colourpicker/colourpicker.iml" filepath="$PROJECT_DIR$/colourpicker/colourpicker.iml" />
     </modules>
   </component>
 </project>

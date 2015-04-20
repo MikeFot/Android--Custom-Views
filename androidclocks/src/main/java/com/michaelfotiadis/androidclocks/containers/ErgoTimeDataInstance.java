@@ -1,6 +1,6 @@
-package com.michaelfotiadis.androidcustomviews.containers;
+package com.michaelfotiadis.androidclocks.containers;
 
-import com.michaelfotiadis.androidcustomviews.utils.PrimitiveConversions;
+import com.michaelfotiadis.androidclocks.utils.PrimitiveConversions;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

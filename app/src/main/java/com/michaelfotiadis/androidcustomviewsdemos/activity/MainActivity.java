@@ -1,19 +1,18 @@
 package com.michaelfotiadis.androidcustomviewsdemos.activity;
 
 import android.app.Activity;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBar;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.os.Bundle;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v4.widget.DrawerLayout;
 
-import com.michaelfotiadis.androidcustomviews.imageview.MyTiledImageView;
 import com.michaelfotiadis.androidcustomviewsdemos.R;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyAnalogClockFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyColourPickerFragment;
@@ -21,6 +20,7 @@ import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyFusionClockFragme
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTiledGridFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTiledImageFragment;
 import com.michaelfotiadis.androidcustomviewsdemos.fragments.MyTypewriterFragment;
+import com.michaelfotiadis.androidcustomviewsdemos.utils.DialogUtils;
 import com.michaelfotiadis.androidcustomviewsdemos.utils.Logger;
 
 public class MainActivity extends ActionBarActivity
@@ -169,13 +169,10 @@ public class MainActivity extends ActionBarActivity
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            new DialogUtils.AboutDialog().show(getSupportFragmentManager().beginTransaction(), "dialog");
             return true;
         }
 
@@ -220,5 +217,4 @@ public class MainActivity extends ActionBarActivity
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
-
 }

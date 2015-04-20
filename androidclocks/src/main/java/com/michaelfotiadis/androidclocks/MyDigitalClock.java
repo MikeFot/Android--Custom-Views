@@ -1,19 +1,18 @@
-package com.michaelfotiadis.androidcustomviews.clock;
-
-import java.util.Calendar;
+package com.michaelfotiadis.androidclocks;
 
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.michaelfotiadis.androidcustomviews.R;
-import com.michaelfotiadis.androidcustomviews.containers.ErgoClockInstance;
-import com.michaelfotiadis.androidcustomviews.utils.Logger;
-import com.michaelfotiadis.androidcustomviews.utils.PrimitiveConversions;
+import com.michaelfotiadis.androidclocks.containers.ErgoClockInstance;
+import com.michaelfotiadis.androidclocks.utils.PrimitiveConversions;
+
+import java.util.Calendar;
 
 
 public class MyDigitalClock extends TextView implements MyClockInterface {
@@ -76,8 +75,8 @@ public class MyDigitalClock extends TextView implements MyClockInterface {
 		try {
 			setTypeface(typeface);
 		} catch (Exception e1) {
-			Logger.e(TAG, "Error encountered while setting font Typeface: ", e1);
-		}
+            Log.e(TAG, e1.getLocalizedMessage());
+        }
 		
 		setTextSize(prefFontSize);
 
@@ -87,7 +86,7 @@ public class MyDigitalClock extends TextView implements MyClockInterface {
 
 			this.setTextColor(mFontColour);
 		} catch (Exception e) {
-			Logger.e(TAG, "Error encountered while settng font Color: ", e);
+            Log.e(TAG, e.getLocalizedMessage());
 		}
 		
 		// set the time initially to 00:00:00
@@ -99,7 +98,7 @@ public class MyDigitalClock extends TextView implements MyClockInterface {
             this.mFontColour = Color.parseColor(colour);
         } catch (Exception e) {
             this.mFontColour = Color.parseColor("#ff0099cc");
-            Logger.e(TAG, e.getLocalizedMessage());
+            Log.e(TAG, e.getLocalizedMessage());
         }
     }
 

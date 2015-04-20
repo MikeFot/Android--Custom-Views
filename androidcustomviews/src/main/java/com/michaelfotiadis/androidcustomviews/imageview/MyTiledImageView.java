@@ -5,19 +5,12 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
-import java.util.ArrayList;
-
-/**
- * Created by Map on 19/04/2015.
- */
 public class MyTiledImageView extends ImageView {
-
 
     public MyTiledImageView(Context context) {
         this(context, null);
@@ -32,6 +25,12 @@ public class MyTiledImageView extends ImageView {
         setWillNotDraw(false);
     }
 
+    /**
+     * Splits an image into chunks and populates the View
+     * @param drawable Drawable to be split
+     * @param chunkNumbers integer number of chunks
+     * @param showGrid Boolean for showing a black line grid as chunk borders
+     */
     public void createImageArrays(final Drawable drawable, int chunkNumbers, final boolean showGrid) {
         this.setImageDrawable(null);
 

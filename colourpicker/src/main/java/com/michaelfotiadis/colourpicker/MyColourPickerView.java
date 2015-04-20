@@ -1,19 +1,12 @@
-package com.michaelfotiadis.androidcustomviews.layouts;
+package com.michaelfotiadis.colourpicker;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
-
-import com.michaelfotiadis.androidcustomviews.R;
-import com.michaelfotiadis.androidcustomviews.utils.Logger;
 
 import java.util.List;
 

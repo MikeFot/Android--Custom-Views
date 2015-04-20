@@ -1,4 +1,4 @@
-package com.michaelfotiadis.androidcustomviews.utils;
+package com.michaelfotiadis.androidclocks.utils;
 
 import android.graphics.Color;
 

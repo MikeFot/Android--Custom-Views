@@ -16,6 +16,8 @@ Views currently included:
 - Expandable colour picker
 - Analog clock
 - Fusion clock
+- Tiled ImageView
+- Tiled GridView
 
 ##Usage
 - See the demo app for usage. Each custom view is used in a fragment.

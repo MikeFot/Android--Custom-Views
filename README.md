@@ -2,14 +2,13 @@
 Repository for custom views for Android.
 
 ##Platform
-Android Studio.
+Android - Built in Android Studio.
 
 ##Description
 This application contains a module with custom Android views (androidcustomviews) and a demo app (App).
 As this is the initial commit, there are several things that still need to be done:
 - Views module reworked into a library.
 - More custom views will be added.
-- The demo will be released in Play Store.
 
 Views currently included:
 - Typewriter
@@ -18,6 +17,9 @@ Views currently included:
 - Fusion clock
 - Tiled ImageView
 - Tiled GridView
+
+##Store Listing
+https://play.google.com/store/apps/details?id=com.michaelfotiadis.androidcustomviewsdemos
 
 ##Usage
 - See the demo app for usage. Each custom view is used in a fragment.

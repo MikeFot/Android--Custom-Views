@@ -17,6 +17,8 @@ Views currently included:
 - Fusion clock
 - Tiled ImageView
 - Tiled GridView
+- Date Input EditText
+- WiFi Signal Strength ImageView
 
 ## Store Listing
 https://play.google.com/store/apps/details?id=com.michaelfotiadis.androidcustomviewsdemos

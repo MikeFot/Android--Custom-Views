@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.michaelfotiadis.androidcustomviewsdemos.fragments.TiledGridFragment">
+
+    <Spinner
+        android:id="@+id/spinner_chunks"
+        android:layout_width="@dimen/button_large_width"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:gravity="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch_border"
+        android:layout_above="@+id/tiled_gridview"
+        android:layout_toRightOf="@+id/spinner_chunks"
+        android:layout_toEndOf="@+id/spinner_chunks"
+        android:layout_alignParentTop="true" />
+
+    <com.michaelfotiadis.androidcustomviews.grid.TiledGridView
+        android:id = "@+id/tiled_gridview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/spinner_chunks" />
+
+
+
+</RelativeLayout>

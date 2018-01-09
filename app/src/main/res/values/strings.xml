@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Android Custom Views</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="about">About</string>
+    <string name="title_activity_main">Custom Views Demo</string>
+
+    <string name="title_section1">TypeWriter</string>
+    <string name="title_section2">Colour Picker</string>
+    <string name="title_section3">Analog Clock</string>
+    <string name="title_section4">Fusion Clock</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="test_text_lorem">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_button_add_colour">Add Colour</string>
+    <string name="text_button_remove_colour">Remove Colour</string>
+    <string name="button_clock_reset">Reset</string>
+    <string name="button_clock_pause">Pause</string>
+    <string name="button_clock_start">Start</string>
+    <string name="title_section5">Tiled Image</string>
+    <string name="title_section6">Tiled Grid</string>
+    <string name="title_section7">Date Edit Text</string>
+    <string name="title_section8">Wifi Signal</string>
+    <string name="ok">OK</string>
+    <!-- App Fields -->
+    <string name="version">1.0</string>
+    <string name="by_author">by Michael Fotiadis</string>
+    <string name="copyright">&#169; Michael Fotiadis</string>
+    <string name="repo_url" tools:ignore="TypographyDashes">https://github.com/MikeFot/Android--Custom-Views</string>
+    <string name="ct_wifi_image">WiFi Image</string>
+
+</resources>

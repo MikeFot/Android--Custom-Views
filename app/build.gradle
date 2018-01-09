@@ -1,0 +1,76 @@
+apply plugin: 'com.android.application'
+
+android {
+
+    compileSdkVersion rootProject.compileSdkVersion
+    buildToolsVersion rootProject.buildToolsVersion
+
+    defaultConfig {
+        applicationId 'com.michaelfotiadis.androidcustomviewsdemos'
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode 2
+        versionName "2.0"
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    signingConfigs {
+
+        release {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_STORE_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_KEY_PASSWORD
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "${variant.name}-${variant.versionName}.apk"
+        }
+    }
+
+    buildTypes {
+
+        release {
+            minifyEnabled false
+            debuggable false
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+            applicationIdSuffix ".debug"
+            versionNameSuffix "-debug"
+        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+}
+
+dependencies {
+    implementation project(':androidcustomviews')
+    implementation project(':androidclocks')
+    implementation project(':colourpicker')
+
+    implementation("com.mikepenz:materialdrawer:6.0.2@aar") {
+        transitive = true
+    }
+
+    //required support lib modules
+    implementation "com.android.support:appcompat-v7:$rootProject.appCompatLibVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.appCompatLibVersion"
+    implementation "com.android.support:support-annotations:$rootProject.appCompatLibVersion"
+    implementation "com.android.support:design:$rootProject.appCompatLibVersion"
+    implementation "com.android.support:support-v4:$rootProject.appCompatLibVersion"
+
+    implementation 'com.mikepenz:fontawesome-typeface:4.7.0.2@aar'
+
+
+}

@@ -1,10 +1,10 @@
 # Android--Custom-Views
 Repository for custom views for Android.
 
-##Platform
+## Platform
 Android - Built in Android Studio.
 
-##Description
+## Description
 This application contains a module with custom Android views (androidcustomviews) and a demo app (App).
 As this is the initial commit, there are several things that still need to be done:
 - Views module reworked into a library.
@@ -18,17 +18,17 @@ Views currently included:
 - Tiled ImageView
 - Tiled GridView
 
-##Store Listing
+## Store Listing
 https://play.google.com/store/apps/details?id=com.michaelfotiadis.androidcustomviewsdemos
 
-##Usage
+## Usage
 - See the demo app for usage. Each custom view is used in a fragment.
 
-##Dependencies
+## Dependencies
 - No external dependencies at the moment.
 
-##Target Platforms
+## Target Platforms
 Android devices running OS version 16+.
 
-##Licensing
+## Licensing
 The code in this project is licensed under the Apache License v2.0.
